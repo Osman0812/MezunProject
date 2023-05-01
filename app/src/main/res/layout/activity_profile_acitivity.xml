@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ProfileActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="113dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="24dp"
+        android:onClick="selectProfilePhoto"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/profileNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.205"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/profileSurnameText"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:hint="sur"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.205"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/profileNameText" />
+
+    <EditText
+        android:id="@+id/jobFirma"
+        android:layout_width="334dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:hint="Firma Adi"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jobCountry" />
+
+    <EditText
+        android:id="@+id/jobCity"
+        android:layout_width="165dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="40dp"
+        android:ems="10"
+        android:hint="City"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/educationSpinner" />
+
+    <Spinner
+        android:id="@+id/educationSpinner"
+        android:layout_width="334dp"
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <EditText
+        android:id="@+id/profileEmailText"
+        android:layout_width="246dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:hint="email"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <EditText
+        android:id="@+id/profilePhoneText"
+        android:layout_width="244dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEmailText" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="İletişim"
+        android:textColor="#0C0C0C"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jobFirma" />
+
+    <EditText
+        android:id="@+id/jobCountry"
+        android:layout_width="165dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="1dp"
+        android:ems="10"
+        android:hint="Country"
+        android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@+id/jobCity"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="28dp"
+        android:text="Eğitim Durumu"
+        android:textColor="#0C0C0C"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="28dp"
+        android:text="İş Bilgileri"
+        android:textColor="#0C0C0C"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/educationSpinner" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePhoneText" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

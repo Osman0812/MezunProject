@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+   >
+
+    <ImageView
+        android:padding="5dp"
+        android:id="@+id/profileView"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="15dp"
+        android:hint="@string/name"
+        android:textSize="18sp">
+
+    </TextView>
+    <TextView
+        android:id="@+id/surnameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="45dp"
+        android:hint="@string/surname"
+        android:textSize="18sp">
+
+    </TextView>
+    <TextView
+        android:id="@+id/emailText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="75dp"
+        android:hint="@string/email"
+        android:textSize="18sp">
+
+    </TextView>
+
+
+</androidx.cardview.widget.CardView>

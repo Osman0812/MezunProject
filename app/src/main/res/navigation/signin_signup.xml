@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signin_signup"
+    app:startDestination="@id/signin2">
+    <fragment
+        android:id="@+id/signin2"
+        android:name="com.example.mezunproject.fragments.Signin"
+        android:label="fragment_signin"
+        tools:layout="@layout/fragment_signin" >
+        <action
+            android:id="@+id/action_signin2_to_signup2"
+            app:destination="@id/signup2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signup2"
+        android:name="com.example.mezunproject.fragments.Signup"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup" >
+        <action
+            android:id="@+id/action_signup2_to_signin2"
+            app:destination="@id/signin2" />
+    </fragment>
+</navigation>

@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">MezunProject</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_your_surname">Enter Your Surname</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="_12_12_12">12.12.12</string>
+    <string name="entry_date">Entry Date</string>
+    <string name="quit_date">Quit Date</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="create_password">Create Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="my_profile">My Profile</string>
+    <string name="logout">Logout</string>
+    <string name="name">name</string>
+    <string name="email">email</string>
+    <string name="surname">surname</string>
+
+    <string-array name="education">
+
+        <item>Lisans</item>
+        <item>Yüksek Lisans</item>
+        <item>Doktora</item>
+
+    </string-array>
+
+
+
+</resources>
