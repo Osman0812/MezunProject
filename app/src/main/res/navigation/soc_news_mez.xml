@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/soc_news_mez"
+    app:startDestination="@id/mainInvisibleFragment">
+
+    <fragment
+        android:id="@+id/mainInvisibleFragment"
+        android:name="com.example.mezunproject.fragments.MainInvisibleFragment"
+        android:label="fragment_main_invisible"
+        tools:layout="@layout/fragment_main_invisible" >
+        <action
+            android:id="@+id/action_mainInvisibleFragment_to_socialFragment"
+            app:destination="@id/socialFragment" />
+        <action
+            android:id="@+id/action_mainInvisibleFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.mezunproject.fragments.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_newsFragment_to_mainInvisibleFragment"
+            app:destination="@id/mainInvisibleFragment" />
+        <action
+            android:id="@+id/action_newsFragment_to_socialFragment"
+            app:destination="@id/socialFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/socialFragment"
+        android:name="com.example.mezunproject.fragments.SocialFragment"
+        android:label="fragment_social"
+        tools:layout="@layout/fragment_social" >
+        <action
+            android:id="@+id/action_socialFragment_to_mainInvisibleFragment"
+            app:destination="@id/mainInvisibleFragment" />
+        <action
+            android:id="@+id/action_socialFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
+    </fragment>
+</navigation>

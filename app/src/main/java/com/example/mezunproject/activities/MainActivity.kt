@@ -1,19 +1,31 @@
 package com.example.mezunproject.activities
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
-import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mezunproject.R
 import com.example.mezunproject.adapters.ProfileRecyclerAdapter
 import com.example.mezunproject.classes.ShareClass
 import com.example.mezunproject.databinding.ActivityMainBinding
+import com.example.mezunproject.fragments.MainInvisibleFragment
+import com.example.mezunproject.fragments.MainInvisibleFragmentDirections
+import com.example.mezunproject.fragments.NewsFragment
+import com.example.mezunproject.fragments.NewsFragmentDirections
+import com.example.mezunproject.fragments.SocialFragment
+import com.example.mezunproject.fragments.SocialFragmentDirections
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -28,10 +40,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var firestore : FirebaseFirestore
     private lateinit var storage: FirebaseStorage
-    private lateinit var sharedPreferences : SharedPreferences
     private lateinit var usersAdapter : ProfileRecyclerAdapter
     private lateinit var usersList : ArrayList<ShareClass>
     private lateinit var shareClass: ShareClass
+    private lateinit var bottomNav : BottomNavigationView
+    //private lateinit var sharedPreferences : SharedPreferences
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -41,9 +54,49 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        //sharedPreferences = getPreferences(Context.MODE_PRIVATE)
+
+
+
+
+
+
+
         auth = Firebase.auth
         firestore = Firebase.firestore
         storage = Firebase.storage
+
+        //bottomnav
+        bottomNav = binding.bottomNavigation.findViewById(R.id.bottom_navigation)
+        bottomNav.setOnItemSelectedListener {
+            when (it.itemId){
+                R.id.home -> {
+
+                    //sharedPreferences.edit().putInt("lastSelectedItem",R.id.home).apply()
+                    //to socail
+                    binding.recyclerView.visibility = View.INVISIBLE
+                    changeFragmentTo(SocialFragment())
+
+
+                }
+                R.id.mezunlar -> {
+                    //sharedPreferences.edit().putInt("lastSelectedItem",R.id.mezunlar).apply()
+                    binding.recyclerView.visibility = View.VISIBLE
+                    changeFragmentTo(MainInvisibleFragment())
+
+                    //to  mezunlar
+                }
+                R.id.news -> {
+                    //sharedPreferences.edit().putInt("lastSelectedItem",R.id.news).apply()
+                    binding.recyclerView.visibility = View.INVISIBLE
+                    changeFragmentTo(NewsFragment())
+
+                    //to news
+                }
+            }
+
+            true
+        }
 
 
 
@@ -63,6 +116,19 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+    private fun changeFragmentTo(fragment : Fragment){
+
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.replace(R.id.frameLayout,fragment).commit()
+
+    }
+
+
+
     private fun getDataFromFirebase(){
 
 

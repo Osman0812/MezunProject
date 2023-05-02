@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/name_surname"
+        android:layout_width="184dp"
+        android:layout_height="40dp"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
+        android:text="Name Surname"
+        android:textColor="#1E3097"
+        android:textSize="20dp"
+        android:typeface="serif">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:textSize="17dp"
+        android:paddingStart="15dp"
+        android:text="asdadafadaf afasd a sdfa sd a ad ad a"
+        />
+
+
+</LinearLayout>
