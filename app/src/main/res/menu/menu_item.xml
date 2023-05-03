@@ -6,6 +6,11 @@
         android:title="@string/my_profile">
     </item>
     <item
+        android:id="@+id/comment"
+        android:title="New Article">
+
+    </item>
+    <item
         android:id="@+id/logout"
         android:title="@string/logout">
 

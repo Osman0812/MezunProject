@@ -97,9 +97,6 @@ class ProfileActivity : AppCompatActivity(){
 
         }else{ // Editing Profile
 
-
-
-
             docName = auth.currentUser!!.email.toString()
 
 
@@ -362,9 +359,6 @@ class ProfileActivity : AppCompatActivity(){
     }
 
     private fun saveToFirebase(){
-
-
-
 
         hashMap["country"] = user.jobCountry.toString()
         hashMap["city"] = user.jobCity.toString()

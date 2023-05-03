@@ -21,6 +21,7 @@ import com.example.mezunproject.classes.ShareClass
 import com.example.mezunproject.databinding.ActivityMainBinding
 import com.example.mezunproject.fragments.MainInvisibleFragment
 import com.example.mezunproject.fragments.MainInvisibleFragmentDirections
+import com.example.mezunproject.fragments.NewArticle
 import com.example.mezunproject.fragments.NewsFragment
 import com.example.mezunproject.fragments.NewsFragmentDirections
 import com.example.mezunproject.fragments.SocialFragment
@@ -55,12 +56,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         //sharedPreferences = getPreferences(Context.MODE_PRIVATE)
-
-
-
-
-
-
 
         auth = Firebase.auth
         firestore = Firebase.firestore
@@ -203,6 +198,19 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
             finish()
+
+        }else if (item.itemId == R.id.comment){
+
+            //userList e dikkat!!!
+            if (bottomNav.selectedItemId != R.id.news){
+                binding.recyclerView.visibility = View.INVISIBLE
+                changeFragmentTo(NewsFragment())
+                bottomNav.selectedItemId = R.id.news
+            }
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            fragmentTransaction.replace(R.id.news_frameLayout,NewArticle()).commit()
 
         }
 

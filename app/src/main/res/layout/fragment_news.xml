@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.NewsFragment"/>
+    tools:context=".fragments.NewsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        
+        android:id="@+id/news_frameLayout"
+        android:layout_width="309dp"
+        android:layout_height="391dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="80dp">
+
+
+
+
+
+    </FrameLayout>
+</FrameLayout>

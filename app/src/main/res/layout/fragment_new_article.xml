@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.NewArticle"
+    android:background="@drawable/back">
+
+
+
+    <TextView
+
+        android:id="@+id/asdads"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:text="Yeni Haber"
+        android:textSize="25dp">
+
+
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/new_article"
+        android:layout_width="286dp"
+        android:layout_height="280dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
+
+        android:background="@drawable/back"
+        android:text=" asdajdasjd dasdasda"></EditText>
+
+
+    <Button
+        android:id="@+id/publish"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="330dp"
+        android:text="publısh">
+
+    </Button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</FrameLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
