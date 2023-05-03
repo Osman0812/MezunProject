@@ -22,6 +22,7 @@ import com.example.mezunproject.databinding.ActivityMainBinding
 import com.example.mezunproject.fragments.MainInvisibleFragment
 import com.example.mezunproject.fragments.MainInvisibleFragmentDirections
 import com.example.mezunproject.fragments.NewArticle
+import com.example.mezunproject.fragments.NewSocial
 import com.example.mezunproject.fragments.NewsFragment
 import com.example.mezunproject.fragments.NewsFragmentDirections
 import com.example.mezunproject.fragments.SocialFragment
@@ -139,6 +140,8 @@ class MainActivity : AppCompatActivity() {
                     val users = value.documents
                     var pictureUrl : String? = null
 
+                    usersList.clear()
+
                     for(user in users) {
 
                         val name = user.get("userName") as String
@@ -210,7 +213,20 @@ class MainActivity : AppCompatActivity() {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
 
-            fragmentTransaction.replace(R.id.news_frameLayout,NewArticle()).commit()
+            fragmentTransaction.replace(R.id.frameLayout,NewArticle()).commit()
+
+        }else if(item.itemId == R.id.social){
+
+            if (bottomNav.selectedItemId != R.id.home){
+                binding.recyclerView.visibility = View.INVISIBLE
+                changeFragmentTo(SocialFragment())
+                bottomNav.selectedItemId = R.id.home
+            }
+
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.frameLayout,NewSocial()).commit()
+
 
         }
 

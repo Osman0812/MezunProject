@@ -7,20 +7,15 @@
     tools:context=".fragments.NewsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/news_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <FrameLayout
-        
-        android:id="@+id/news_frameLayout"
-        android:layout_width="309dp"
-        android:layout_height="391dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="80dp">
 
 
 
 
 
-    </FrameLayout>
+
+
 </FrameLayout>

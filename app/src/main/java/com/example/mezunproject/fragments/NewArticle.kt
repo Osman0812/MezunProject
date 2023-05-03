@@ -3,6 +3,7 @@ package com.example.mezunproject.fragments
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.example.mezunproject.R
 import com.example.mezunproject.activities.MainActivity
 import com.example.mezunproject.databinding.FragmentNewArticleBinding
 import com.example.mezunproject.databinding.FragmentNewsBinding
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -36,37 +38,47 @@ class NewArticle : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         auth = Firebase.auth
         firestore = Firebase.firestore
 
+        binding.newArticle.requestFocus()
+
         binding.publish.setOnClickListener {
 
             onPublishClicked()
 
-
-
-
-
         }
+
 
     }
 
 
     private fun onPublishClicked(){
 
-        if (binding.newArticle.text.equals("")){
+        if (binding.newArticle.text.isEmpty()){
             Toast.makeText(context,"Write down something to publish!",Toast.LENGTH_LONG).show()
         }else{
             val myArticle = binding.newArticle.text.toString()
             val user = auth.currentUser
 
             hashMap["myarticle"] = myArticle
+            hashMap["date"] = Timestamp.now()
+            //hashMap["expireAt"] = Timestamp.now().toDate().time + (1*10*1000)
 
             firestore.collection("Users").document(user!!.email.toString()).update(hashMap).let {
                 it.addOnSuccessListener {
+
                     Toast.makeText(context,"Published!",Toast.LENGTH_LONG).show()
                     goToNewsFragment()
 
@@ -79,12 +91,15 @@ class NewArticle : Fragment() {
 
     }
 
+
+
     private fun goToNewsFragment(){
         val fragmentManager = fragmentManager
         val fragmentTransaction = fragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.news_frameLayout,NewsFragment())
+        fragmentTransaction.replace(R.id.frameLayout,NewsFragment())
         fragmentTransaction.commit()
     }
+
 
 
 

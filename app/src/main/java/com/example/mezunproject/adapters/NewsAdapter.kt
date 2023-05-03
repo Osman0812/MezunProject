@@ -1,5 +1,6 @@
 package com.example.mezunproject.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -21,8 +22,10 @@ class NewsAdapter(private val articleList: ArrayList<ArticleKeeper>) : RecyclerV
         return articleList.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {
-        holder.binding.name.text = "$articleList.get(position).name + ${articleList.get(position).surname}"
+        holder.binding.comment.text = articleList[position].article
+        holder.binding.name.text = articleList.get(position).name + " "  + articleList.get(position).surname
 
     }
 }

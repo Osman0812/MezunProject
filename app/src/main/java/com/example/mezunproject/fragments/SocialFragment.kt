@@ -1,60 +1,115 @@
 package com.example.mezunproject.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mezunproject.R
+import com.example.mezunproject.adapters.SocialAdapter
+import com.example.mezunproject.classes.Post
+import com.example.mezunproject.databinding.FragmentNewsBinding
+import com.example.mezunproject.databinding.FragmentSocialBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
+import java.util.UUID
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SocialFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SocialFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+    private var _binding: FragmentSocialBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var auth: FirebaseAuth
+    private lateinit var storage: FirebaseStorage
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var postArrayList: ArrayList<Post>
+    private lateinit var socialAdapter : SocialAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_social, container, false)
+    ): View {
+        _binding = FragmentSocialBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SocialFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SocialFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        auth = Firebase.auth
+        firestore = Firebase.firestore
+        storage = Firebase.storage
+
+        postArrayList = ArrayList<Post>()
+
+        getDataFromFirebase()
+
+        binding.socialRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        socialAdapter = SocialAdapter(postArrayList)
+        binding.socialRecyclerView.adapter = socialAdapter
+
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun getDataFromFirebase(){
+
+
+
+        firestore.collection("Posts").orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { value, error ->
+
+            if (error != null){
+                Toast.makeText(context,error.message,Toast.LENGTH_LONG).show()
+            }else{
+                if (value != null && !value.isEmpty){
+
+                    val documents = value.documents
+
+                    postArrayList.clear()
+
+                    for(document in documents){
+
+                        val comment = document.get("comment") as String
+                        val userEmail = document.get("userName") as String
+                        val downloadUrl = document.get("downloadUrl") as String
+
+                        val post = Post(userEmail,comment,downloadUrl)
+                        postArrayList.add(post)
+
+                    }
+
+                    socialAdapter.notifyDataSetChanged()
+
                 }
             }
+
+        }
+
+
+
+
+
+
     }
+
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+
+    }
+
+
 }

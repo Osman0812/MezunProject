@@ -6,8 +6,13 @@
         android:title="@string/my_profile">
     </item>
     <item
+        android:id="@+id/social"
+        android:title="Share Post">
+
+    </item>
+    <item
         android:id="@+id/comment"
-        android:title="New Article">
+        android:title="Share Article">
 
     </item>
     <item
