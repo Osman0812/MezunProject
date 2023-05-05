@@ -10,12 +10,14 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.mezunproject.R
 import com.example.mezunproject.activities.MainActivity
+import com.example.mezunproject.classes.ArticleKeeper
 import com.example.mezunproject.databinding.FragmentNewArticleBinding
 import com.example.mezunproject.databinding.FragmentNewsBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -24,7 +26,8 @@ class NewArticle : Fragment() {
 
     private var _binding: FragmentNewArticleBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var articleKeeper: ArticleKeeper
+    private lateinit var newsList : ArrayList<ArticleKeeper>
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
     private val hashMap = hashMapOf<String, Any>()
@@ -52,6 +55,10 @@ class NewArticle : Fragment() {
         auth = Firebase.auth
         firestore = Firebase.firestore
 
+        newsList = ArrayList<ArticleKeeper>()
+
+
+
         binding.newArticle.requestFocus()
 
         binding.publish.setOnClickListener {
@@ -74,7 +81,10 @@ class NewArticle : Fragment() {
 
             hashMap["myarticle"] = myArticle
             hashMap["date"] = Timestamp.now()
+
             //hashMap["expireAt"] = Timestamp.now().toDate().time + (1*10*1000)
+
+
 
             firestore.collection("Users").document(user!!.email.toString()).update(hashMap).let {
                 it.addOnSuccessListener {
@@ -86,6 +96,42 @@ class NewArticle : Fragment() {
                     Toast.makeText(context,error.message,Toast.LENGTH_LONG).show()
                 }
             }
+
+        }
+
+
+    }
+
+    private fun getUserData(){
+
+
+        firestore.collection("Users").orderBy("date",
+            Query.Direction.DESCENDING).addSnapshotListener{ value, error->
+
+            if (error != null){
+                Toast.makeText(context,error.message, Toast.LENGTH_LONG).show()
+            }else{
+
+                if (value != null && !value.isEmpty){
+                    val users = value.documents
+
+                    for (user in users){
+                        if (user["email"] == auth.currentUser!!.email){
+
+                            val name = user.get("userName") as String
+                            val surname = user.get("surname") as String
+
+
+                            articleKeeper = ArticleKeeper(name,surname)
+                            newsList.add(articleKeeper)
+
+                        }
+                    }
+
+                }
+
+            }
+
         }
 
 

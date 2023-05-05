@@ -125,6 +125,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun getDataFromFirebase(){
 
 
@@ -140,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                     val users = value.documents
                     var pictureUrl : String? = null
 
-                    usersList.clear()
+                   usersList.clear()
 
                     for(user in users) {
 
@@ -188,10 +189,11 @@ class MainActivity : AppCompatActivity() {
 
         val ez = intent.getIntExtra("ez",0)
         if (item.itemId == R.id.profile){
-            usersList.clear()
+
             val intent = Intent(this, ProfileActivity::class.java)
             intent.putExtra("krang",ez)
             startActivity(intent)
+
         }else if(item.itemId == R.id.logout){
 
             val pref = getSharedPreferences("com.example.mezunproject.activities", MODE_PRIVATE)

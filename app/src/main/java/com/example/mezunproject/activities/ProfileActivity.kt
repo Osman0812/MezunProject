@@ -230,6 +230,8 @@ class ProfileActivity : AppCompatActivity(){
 
     }
 
+
+
     private fun getDataFromFirebase(){
 
         val docName = auth.currentUser!!.email.toString() // docName -> email
@@ -314,7 +316,7 @@ class ProfileActivity : AppCompatActivity(){
 
 
 
-            // user = User(name,surname,email,selectedItem,countryName,phoneNumber,cityName,jobFirma)
+           user = User(name,surname,email,selectedItem,countryName,phoneNumber,cityName,jobFirma)
 
 
 

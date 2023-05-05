@@ -16,6 +16,11 @@
 
     </item>
     <item
+        android:id="@+id/passwordreset"
+        android:title="Change Password">
+
+    </item>
+    <item
         android:id="@+id/logout"
         android:title="@string/logout">
 

@@ -30,6 +30,7 @@ class NewsFragment : Fragment() {
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var myArticle : ArticleKeeper
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
     private var article : String? = null
@@ -117,6 +118,7 @@ class NewsFragment : Fragment() {
 
                     val users = value.documents
 
+                    articleArrayList.clear()
 
 
                     for(user in users) {
@@ -129,7 +131,7 @@ class NewsFragment : Fragment() {
                             name = user.get("userName") as String
                             surname = user.get("surname") as String
 
-                            val myArticle = ArticleKeeper(name!!,surname!!,article)
+                            myArticle = ArticleKeeper(name!!,surname!!,article)
                             articleArrayList.add(myArticle)
                             article = null
 
@@ -148,7 +150,6 @@ class NewsFragment : Fragment() {
 
 
     }
-
 
 
 
