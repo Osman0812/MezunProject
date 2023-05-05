@@ -230,6 +230,9 @@ class MainActivity : AppCompatActivity() {
             fragmentTransaction.replace(R.id.frameLayout,NewSocial()).commit()
 
 
+        }else if(item.itemId == R.id.passwordreset){
+            val intent = Intent(this,PasswordReset::class.java)
+            startActivity(intent)
         }
 
 
