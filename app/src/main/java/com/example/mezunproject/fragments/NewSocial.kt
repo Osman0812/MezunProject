@@ -83,21 +83,40 @@ class NewSocial : Fragment() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun selectProfilePhoto(view: View){
 
-        if (ContextCompat.checkSelfPermission(requireContext(),
-                Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
-            if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_MEDIA_IMAGES)){
-                Snackbar.make(view,"Permission needed to access for gallery!", Snackbar.LENGTH_INDEFINITE).setAction("Give Permission"){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            if (ContextCompat.checkSelfPermission(requireContext(),
+                    Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_MEDIA_IMAGES)){
+                    Snackbar.make(view,"Permission needed to access for gallery!", Snackbar.LENGTH_INDEFINITE).setAction("Give Permission"){
+                        //request permission
+                        permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+                    }.show()
+                }else {
                     //request permission
                     permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
-                }.show()
+                }
             }else {
-                //request permission
-                permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+                val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                activityResultLauncher.launch(intent)
             }
-        }else {
-            val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            activityResultLauncher.launch(intent)
+        }else{
+            if (ContextCompat.checkSelfPermission(requireContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)){
+                    Snackbar.make(view,"Permission needed to access for gallery!", Snackbar.LENGTH_INDEFINITE).setAction("Give Permission"){
+                        //request permission
+                        permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    }.show()
+                }else {
+                    //request permission
+                    permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
+            }else {
+                val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                activityResultLauncher.launch(intent)
+            }
         }
+
 
     }
 

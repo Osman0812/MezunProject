@@ -10,6 +10,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -47,6 +49,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var shareClass: ShareClass
     private lateinit var bottomNav : BottomNavigationView
     //private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var searchView: SearchView
+
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -55,6 +59,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+       
+        // Set the listener for the SearchView widget
+
+
+
 
         //sharedPreferences = getPreferences(Context.MODE_PRIVATE)
 
@@ -181,6 +191,7 @@ class MainActivity : AppCompatActivity() {
 
         val menuInflater = menuInflater
         menuInflater.inflate(R.menu.menu_item,menu)
+
         return super.onCreateOptionsMenu(menu)
 
     }
@@ -239,6 +250,9 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
 
     }
+
+
+
 
 
 }

@@ -182,23 +182,42 @@ class ProfileActivity : AppCompatActivity(){
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun selectProfilePhoto(view: View){
 
-        if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_MEDIA_IMAGES)){
-                Snackbar.make(view,"Permission needed to access for gallery!",Snackbar.LENGTH_INDEFINITE).setAction("Give Permission"){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_MEDIA_IMAGES)){
+                    Snackbar.make(view,"Permission needed to access for gallery!",Snackbar.LENGTH_INDEFINITE).setAction("Give Permission"){
+                        //request permission
+                        permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+                    }.show()
+                }else {
                     //request permission
                     permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
-                }.show()
+                }
             }else {
-                //request permission
-                permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+                val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                activityResultLauncher.launch(intent)
             }
         }else {
-            val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            activityResultLauncher.launch(intent)
+
+            if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)){
+                    Snackbar.make(view,"Permission needed to access for gallery!",Snackbar.LENGTH_INDEFINITE).setAction("Give Permission"){
+                        //request permission
+                        permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    }.show()
+                }else {
+                    //request permission
+                    permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
+            }else {
+                val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                activityResultLauncher.launch(intent)
+            }
+
         }
+
 
     }
 
@@ -362,6 +381,8 @@ class ProfileActivity : AppCompatActivity(){
 
     private fun saveToFirebase(){
 
+        hashMap["userName"] = binding.profileNameText.text.toString()
+        hashMap["surname"] = binding.profileSurnameText.text.toString()
         hashMap["country"] = user.jobCountry.toString()
         hashMap["city"] = user.jobCity.toString()
         hashMap["job"] = user.jobFirma.toString()
